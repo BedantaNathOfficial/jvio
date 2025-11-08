@@ -1,0 +1,528 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg: #0a0a0a;
+    --text: #ffffff;
+    --glass: rgba(255, 255, 255, 0.08);
+    --accent: #fc920f; /* Purple */
+    --blur: 12px;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.6s ease, color 0.6s ease;
+}
+
+/* Light Theme Variables */
+.light {
+    --bg: #fdfdfd;
+    --text: #111;
+    --glass: rgba(255, 255, 255, 0.6);
+    --accent: #c59a3f; /* Gold/Bronze */
+}
+
+.glass {
+    backdrop-filter: blur(var(--blur));
+    background: var(--glass);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar nav a {
+    margin: 0 10px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.navbar nav a:hover {
+    color: var(--accent);
+}
+
+/* ====== JVIO CSS LOGO ====== */
+/* ====== JVIO CSS LOGO (Enhanced Glow + Rotation) ====== */
+/* ====== JVIO CSS LOGO (Dark = Sky Blue / Light = Orange) ====== */
+/* ====== JVIO CSS LOGO (Final Polished Version) ====== */
+/* ====== JVIO LOGO (Final Clean Version) ====== */
+.jvio-logo {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin-right: 5px;
+  cursor: pointer;
+  transition: transform 1.2s ease-in-out;
+}
+
+/* Crossing lines */
+.line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70px;
+  height: 2px;
+  background-color: var(--text);
+  transform-origin: center;
+  transition: all 0.4s ease;
+}
+
+/* Cross line rotations */
+.line1 { transform: translate(-50%, -50%) rotate(45deg); }
+.line2 { transform: translate(-50%, -50%) rotate(-45deg); }
+
+/* Auto color-changing animation for the cross lines */
+@keyframes lineColorShift {
+  0% { background-color: #f855a7; box-shadow: 0 0 8px #c683f3; }
+  25% { background-color: #00ffff; box-shadow: 0 0 8px #3affff; }
+  50% { background-color: #46f2c4; box-shadow: 0 0 8px #39ff14; }
+  75% { background-color: #ffeb11; box-shadow: 0 0 8px #ff9f0f; }
+  100% { background-color: #ff730e; box-shadow: 0 0 8px #f4940e; }
+}
+.jvio-logo .line {
+  animation: lineColorShift 3s infinite linear;
+}
+
+/* Letters */
+.letter {
+  position: absolute;
+  font-family: 'Times New Roman', serif;
+  font-weight: 600;
+  font-size: 17px;
+  user-select: none;
+  color: var(--text); /* default white or black depending on theme */
+  transition: text-shadow 0.4s ease, color 0.4s ease;
+}
+
+/* Letter positions */
+.top { top: -8px; left: 50%; transform: translateX(-50%); }
+.bottom { bottom: -8px; left: 50%; transform: translateX(-50%); }
+.left { top: 50%; left: -10px; transform: translateY(-50%); }
+.right { top: 50%; right: -10px; transform: translateY(-50%); }
+
+/* Hover: Rotate + Glow */
+.jvio-logo:hover {
+  transform: rotate(360deg) scale(1.05);
+}
+
+/* Dark mode hover glow (Sky Blue) */
+body:not(.light) .jvio-logo:hover .letter {
+  color: #00bfff;
+  text-shadow: 0 0 10px #00bfff, 0 0 25px #00bfff;
+}
+
+/* Light mode hover glow (Orange) */
+body.light .jvio-logo:hover .letter {
+  color: #ffa500;
+  text-shadow: 0 0 10px #ffa500, 0 0 25px #ffa500;
+}
+
+/* Wrapper alignment (reduce space even more) */
+.jvio-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1px; /* very tight */
+}
+
+
+.social-icons a {
+    margin: 0 8px;
+    font-size: 1.3em;
+    color: var(--text);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.social-icons a:hover {
+    color: var(--accent);
+    transform: scale(1.2);
+}
+
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    font-size: 1.4em;
+    cursor: pointer;
+    color: var(--text); /* Ensures icon color changes with theme */
+    transition: transform 0.3s;
+}
+.theme-toggle:hover {
+    transform: scale(1.2);
+}
+
+/* Hero */
+.hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    /* CRITICAL FIX: Smooth transition for slideshow */
+    transition: opacity 1.5s ease-in-out; 
+}
+.hero-slideshow img.active {
+    opacity: 1;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+}
+
+.hero-content {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    color: white;
+    z-index: 10;
+}
+
+.hero-content h2 {
+    font-size: 3em;
+    text-shadow: 0 0 10px rgba(138, 43, 226, 0.7); /* Use a fixed dark color for contrast */
+}
+.hero-content p {
+    margin: 10px 0 25px;
+    font-size: 1.2em;
+}
+
+.glass-btn {
+    border: none;
+    border-radius: 50px;
+    padding: 10px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    color: white;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+.glass-btn:hover {
+    background: var(--accent);
+}
+
+/* Albums */
+.albums {
+    text-align: center;
+    padding: 80px 40px;
+}
+.albums h3 {
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+.album {
+    cursor: pointer;
+    transition: transform 0.3s ease, border 0.3s;
+    border: 3px solid transparent; /* Added for playing indicator */
+    border-radius: 18px; /* Match album img border-radius + padding */
+}
+.album:hover {
+    transform: scale(1.05);
+}
+
+/* New style for playing album */
+.album.playing {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent);
+}
+
+.album img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+.album p {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* Gallery */
+.gallery {
+    padding: 80px 40px;
+    text-align: center;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.gallery-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+}
+
+.gallery-grid video {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+.gallery-grid video:hover {
+  transform: scale(1.05);
+}
+
+/* Contact */
+.contact {
+    padding: 80px 40px;
+    text-align: center;
+}
+.contact-form {
+    max-width: 400px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 15px;
+}
+.contact-form input, .contact-form textarea {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.1);
+    color: var(--text);
+    /* Improve focus state visibility */
+    transition: border 0.3s;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    border: 2px solid var(--accent);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+}
+
+.link-popup {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 10px;
+    position: absolute;
+    z-index: 1000;
+    width: 120px;
+    text-align: center;
+}
+
+.link-popup a {
+    color: var(--accent);
+    text-decoration: none;
+    margin: 4px 0;
+    font-size: 0.9em;
+    transition: color 0.3s;
+}
+
+.link-popup a:hover {
+    color: #fff;
+}
+.album {
+    position: relative;
+}
+
+#progress-bar {
+  width: 60%;
+  margin-top: 15px;
+  appearance: none;
+  height: 6px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+#progress-bar::-webkit-slider-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+
+/* Hero Text Fade Animation */
+#hero-title, #hero-subtext {
+  transition: opacity 0.8s ease-in-out;
+}
+
+/* Song Link Popup */
+.link-popup {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 10px 15px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+  animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.icon-links a {
+  color: var(--accent);
+  font-size: 1.4em;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.icon-links a:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+.album {
+  position: relative;
+}
+
+/* ===================== */
+/* 🎥 Studio Videos Section */
+/* ===================== */
+.videos {
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.videos h3 {
+  margin-bottom: 30px;
+  font-size: 2em;
+  color: var(--accent);
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.video-grid video {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #000;
+}
+
+.video-grid video:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--accent);
+}
+
+.about {
+    padding: 80px 40px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 15px;
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.8;
+    color: var(--text);
+    background: none; /* transparent background */
+    transition: transform 0.4s ease;
+}
+
+.about:hover {
+    transform: scale(1.02);
+}
+
+.about h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 1px;
+}
+
+.about p {
+    font-size: 1.1em;
+    font-weight: 400;
+    color: var(--text);
+    opacity: 0.9;
+}
+
+body.light .about p {
+    color: #222; /* dark text for light mode */
+}
+
+body:not(.light) .about p {
+    color: #ddd; /* light text for dark mode */
+}
+
+
+.jvio-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* ↓ reduced from 10px to 4px */
+}
+
+.logo {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2em;
+  color: #ffffff;
+  transform: translateX(-5px); /* small shift left */
+  text-shadow: 0 0 8px #00bfff; /* sky-blue glow for text */
+  transition: text-shadow 0.4s ease, color 0.4s ease;
+}
+
+/* Make logo text also glow in sync */
+.logo:hover {
+  color: #ffa500;
+  text-shadow: 0 0 12px #ffa500, 0 0 20px #ffa500;
+}
