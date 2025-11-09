@@ -482,19 +482,23 @@ body.light .jvio-logo:hover .letter {
     transform: scale(1.02);
 }
 
+.about {
+  padding: 80px 40px;
+  text-align: center;
+  line-height: 1.8;
+}
+
 .about h3 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 1px;
+  font-size: 2em;
+  margin-bottom: 25px;
 }
 
 .about p {
-    font-size: 1.1em;
-    font-weight: 400;
-    color: var(--text);
-    opacity: 0.9;
+  max-width: 800px;
+  margin: 10px auto;
+  font-size: 1.1em;
+  color: var(--text);
+  opacity: 0.9;
 }
 
 body.light .about p {
@@ -598,3 +602,4 @@ body:not(.light) .about p {
     right: 15px;
   }
 }
+
